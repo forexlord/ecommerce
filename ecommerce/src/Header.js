@@ -8,7 +8,6 @@ import { useStateValue } from "./StateProvider";
 function Header() {
   // Example of correct usage in Header.js:
   const [{ basket }] = useStateValue();
-  console.log(basket);
 
   return (
     <nav className="header">
