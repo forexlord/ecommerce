@@ -4,15 +4,21 @@ import { Link } from "react-router-dom";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { useStateValue } from "./StateProvider";
+import { auth } from "./firebase";
 
 function Header() {
   // Example of correct usage in Header.js:
-  const [{ basket }] = useStateValue();
+  const [{ basket, user }] = useStateValue();
+
+  const handleAuthentication = () => {
+    if (user) {
+      auth.signOut();
+    }
+  };
 
   return (
     <nav className="header">
       <Link to="/">
-        {" "}
         <img className="header-logo" src="./images/ecommerce.png" alt="" />
       </Link>
       <div className="header-search">
@@ -21,10 +27,12 @@ function Header() {
       </div>
 
       <div className="header-nav">
-        <Link to="/login" className="header-link">
-          <div className="header-option">
-            <span className="header-optionLineOne">Hello, Recovery</span>
-            <span className="header-optionLineTwo">Sign in </span>
+        <Link to={!user && "/login"} className="header-link">
+          <div onClick={handleAuthentication} className="header-option">
+            <span className="header-optionLineOne">Hello {user?.email}</span>
+            <span className="header-optionLineTwo">
+              {user ? "Sign Out" : "sign In"}
+            </span>
           </div>
         </Link>
 

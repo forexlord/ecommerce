@@ -20,6 +20,10 @@ function Checkout() {
           </div>
         ) : (
           <div>
+            <img
+              className="checkout__ad"
+              src="https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/717RUPA1bDL._SX3000_.jpg"
+            />
             <h2 className="checkout__title">Your shopping basket</h2>
             {basket.map((item) => {
               return (

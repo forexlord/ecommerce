@@ -1,5 +1,6 @@
 export const initialState = {
   basket: [],
+  user: null,
 };
 //the first file sets up the data layer so that it could work
 //reducer is used to listen for action and to update the state of the store
@@ -34,6 +35,11 @@ function reducer(state, action) {
         newBasket.splice(index, 1);
       }
       return { ...state, basket: newBasket };
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.user,
+      };
     default:
       return state;
   }
